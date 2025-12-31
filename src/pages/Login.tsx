@@ -9,7 +9,7 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const { addToast } = useToast();
   const navigate = useNavigate();
 
@@ -19,7 +19,12 @@ const Login: React.FC = () => {
     try {
       await login(email, password);
       addToast('Login successful', 'success');
-      navigate('/');
+      // Redirect based on role
+      if (user?.role === 'Admin') {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
     } catch (error: any) {
       addToast(error.response?.data?.error || 'Login failed', 'error');
     } finally {

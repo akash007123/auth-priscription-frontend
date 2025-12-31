@@ -29,13 +29,26 @@ export default function Header() {
 
   if (!user) return null;
 
-  // Navigation items
-  const navItems = [
+  // Navigation items based on role
+  const navItems = user.role === 'Admin' ? [
     {
       name: 'Dashboard',
-      path: '/dashboard',
+      path: '/admin',
       icon: Squares2X2Icon,
-      active: location.pathname === '/dashboard'
+      active: location.pathname === '/admin'
+    },
+    {
+      name: 'Users',
+      path: '/admin/users',
+      icon: UserCircleIcon,
+      active: location.pathname === '/admin/users'
+    }
+  ] : [
+    {
+      name: 'Dashboard',
+      path: '/',
+      icon: Squares2X2Icon,
+      active: location.pathname === '/'
     },
     {
       name: 'Prescriptions',
@@ -61,7 +74,7 @@ export default function Header() {
             </div>
 
             {/* Navigation Links */}
-            <nav className="hidden md:flex items-center space-x-1">
+            {/* <nav className="hidden md:flex items-center space-x-1">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
@@ -76,37 +89,41 @@ export default function Header() {
                   <span>{item.name}</span>
                 </Link>
               ))}
-            </nav>
+            </nav>  */}
           </div>
 
           {/* RIGHT: Actions */}
           <div className="flex items-center space-x-4">
             {/* Mobile Navigation Toggle */}
-            <div className="md:hidden">
-              <Link to="/prescriptions">
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  className="!p-2"
-                >
-                  <DocumentTextIcon className="w-5 h-5" />
-                </Button>
-              </Link>
-            </div>
+            {user.role === 'Doctor' && (
+              <div className="md:hidden">
+                <Link to="/prescriptions">
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="!p-2"
+                  >
+                    <DocumentTextIcon className="w-5 h-5" />
+                  </Button>
+                </Link>
+              </div>
+            )}
 
-            {/* Desktop View Prescriptions Button */}
-            <div className="hidden md:block">
-              <Link to="/prescriptions">
-                <Button
-                  variant="primary"
-                  size="md"
-                  className="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-1000 shadow-sm"
-                >
-                  <DocumentTextIcon className="w-4 h-4" />
-                  <span>Prescriptions</span>
-                </Button>
-              </Link>
-            </div>
+            {/* Desktop View Prescriptions Button - Only for Doctors */}
+            {user.role === 'Doctor' && (
+              <div className="hidden md:block">
+                <Link to="/prescriptions">
+                  <Button
+                    variant="primary"
+                    size="md"
+                    className="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-1000 shadow-sm"
+                  >
+                    <DocumentTextIcon className="w-4 h-4" />
+                    <span>Prescriptions</span>
+                  </Button>
+                </Link>
+              </div>
+            )}
 
             {/* Profile Dropdown */}
             <div className="relative" ref={dropdownRef}>
@@ -199,7 +216,7 @@ export default function Header() {
         {/* Mobile Navigation */}
         <div className="md:hidden border-t border-gray-100 mt-2 pt-3">
           <div className="flex items-center justify-around">
-            {navItems.map((item) => (
+            {/* {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
@@ -212,7 +229,7 @@ export default function Header() {
                 <item.icon className="w-5 h-5 mb-1" />
                 <span className="text-xs font-medium">{item.name}</span>
               </Link>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>

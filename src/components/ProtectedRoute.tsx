@@ -19,7 +19,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, requiredRole 
   }
 
   if (requiredRole && user.role !== requiredRole) {
-    return <Navigate to="/" replace />;
+    const redirectTo = user.role === 'Admin' ? '/admin' : '/';
+    return <Navigate to={redirectTo} replace />;
   }
 
   return <>{children}</>;
