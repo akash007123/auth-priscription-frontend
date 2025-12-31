@@ -64,200 +64,235 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Create your account
-          </h2>
+    <div className="min-h-screen flex">
+      {/* Left side - Prescription Maker Content */}
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-600 to-indigo-800 items-center justify-center p-12">
+        <div className="text-white text-center">
+          <img src="/rx.png" alt="Rx Symbol" className="w-24 h-24 mx-auto mb-6 opacity-90" />
+          <h1 className="text-5xl font-bold mb-4">Prescription Maker</h1>
+          <p className="text-xl mb-8 leading-relaxed">
+            Streamline your medical practice with our intuitive prescription management system.
+            Create, manage, and track prescriptions effortlessly.
+          </p>
+          <div className="flex justify-center space-x-4">
+            <div className="bg-white bg-opacity-20 rounded-lg p-4 backdrop-blur-sm">
+              <h3 className="font-semibold">Easy Creation</h3>
+              <p className="text-sm">Quick prescription setup</p>
+            </div>
+            <div className="bg-white bg-opacity-20 rounded-lg p-4 backdrop-blur-sm">
+              <h3 className="font-semibold">Secure Storage</h3>
+              <p className="text-sm">Safe patient data management</p>
+            </div>
+            <div className="bg-white bg-opacity-20 rounded-lg p-4 backdrop-blur-sm">
+              <h3 className="font-semibold">Admin Control</h3>
+              <p className="text-sm">Full administrative oversight</p>
+            </div>
+          </div>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+      </div>
+
+      {/* Right side - Signup Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 overflow-y-auto">
+        <div className="max-w-lg w-full space-y-8 bg-white p-8 rounded-lg shadow-2xl">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Role</label>
-            <select
-              value={role}
-              onChange={(e) => setRole(e.target.value as 'Admin' | 'Doctor')}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              <option value="Doctor">Doctor</option>
-              <option value="Admin">Admin</option>
-            </select>
+            <img src="/logo.png" alt="Logo" className="w-16 h-16 mx-auto mb-4" />
+            <h2 className="text-center text-3xl font-extrabold text-gray-900">
+              Create your account
+            </h2>
+            <p className="mt-2 text-center text-sm text-gray-600">
+              Join our prescription management platform
+            </p>
           </div>
-
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="mobile" className="block text-sm font-medium text-gray-700">
-              Mobile
-            </label>
-            <input
-              id="mobile"
-              name="mobile"
-              type="text"
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              value={formData.mobile}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              value={formData.password}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          {role === 'Doctor' && (
-            <>
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="address" className="block text-sm font-medium text-gray-700">
-                  Address
-                </label>
-                <textarea
-                  id="address"
-                  name="address"
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                  value={formData.address}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="clinicHospitalName" className="block text-sm font-medium text-gray-700">
-                  Clinic/Hospital Name
-                </label>
-                <input
-                  id="clinicHospitalName"
-                  name="clinicHospitalName"
-                  type="text"
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                  value={formData.clinicHospitalName}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="qualification" className="block text-sm font-medium text-gray-700">
-                  Qualification
-                </label>
-                <input
-                  id="qualification"
-                  name="qualification"
-                  type="text"
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                  value={formData.qualification}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="registrationNo" className="block text-sm font-medium text-gray-700">
-                  Registration No.
-                </label>
-                <input
-                  id="registrationNo"
-                  name="registrationNo"
-                  type="text"
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                  value={formData.registrationNo}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </>
-          )}
-
-          <div>
-            <label htmlFor="profilePic" className="block text-sm font-medium text-gray-700">
-              Profile Picture
-            </label>
-            <input
-              id="profilePic"
-              name="profilePic"
-              type="file"
-              accept="image/*"
-              required
-              className="mt-1 block w-full"
-              onChange={(e) => handleFileChange(e, 'profilePic')}
-            />
-          </div>
-
-          {role === 'Doctor' && (
+          <div className="overflow-y-auto max-h-[60vh]">
+            <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="logoPic" className="block text-sm font-medium text-gray-700">
-                Logo Picture
+              <label className="block text-sm font-medium text-gray-700">Role</label>
+              <select
+                value={role}
+                onChange={(e) => setRole(e.target.value as 'Admin' | 'Doctor')}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+              >
+                <option value="Doctor">Doctor</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email
               </label>
               <input
-                id="logoPic"
-                name="logoPic"
+                id="email"
+                name="email"
+                type="email"
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+                value={formData.email}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="mobile" className="block text-sm font-medium text-gray-700">
+                Mobile
+              </label>
+              <input
+                id="mobile"
+                name="mobile"
+                type="text"
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+                value={formData.mobile}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+                value={formData.password}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            {role === 'Doctor' && (
+              <>
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                    Address
+                  </label>
+                  <textarea
+                    id="address"
+                    name="address"
+                    required
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="clinicHospitalName" className="block text-sm font-medium text-gray-700">
+                    Clinic/Hospital Name
+                  </label>
+                  <input
+                    id="clinicHospitalName"
+                    name="clinicHospitalName"
+                    type="text"
+                    required
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+                    value={formData.clinicHospitalName}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="qualification" className="block text-sm font-medium text-gray-700">
+                    Qualification
+                  </label>
+                  <input
+                    id="qualification"
+                    name="qualification"
+                    type="text"
+                    required
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+                    value={formData.qualification}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="registrationNo" className="block text-sm font-medium text-gray-700">
+                    Registration No.
+                  </label>
+                  <input
+                    id="registrationNo"
+                    name="registrationNo"
+                    type="text"
+                    required
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+                    value={formData.registrationNo}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </>
+            )}
+
+            <div>
+              <label htmlFor="profilePic" className="block text-sm font-medium text-gray-700">
+                Profile Picture
+              </label>
+              <input
+                id="profilePic"
+                name="profilePic"
                 type="file"
                 accept="image/*"
                 required
                 className="mt-1 block w-full"
-                onChange={(e) => handleFileChange(e, 'logoPic')}
+                onChange={(e) => handleFileChange(e, 'profilePic')}
               />
             </div>
-          )}
 
-          <div>
-            <Button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              disabled={loading}
-            >
-              {loading ? 'Signing up...' : 'Sign up'}
-            </Button>
-          </div>
+            {role === 'Doctor' && (
+              <div>
+                <label htmlFor="logoPic" className="block text-sm font-medium text-gray-700">
+                  Logo Picture
+                </label>
+                <input
+                  id="logoPic"
+                  name="logoPic"
+                  type="file"
+                  accept="image/*"
+                  required
+                  className="mt-1 block w-full"
+                  onChange={(e) => handleFileChange(e, 'logoPic')}
+                />
+              </div>
+            )}
 
-          <div className="text-center">
-            <Link
-              to="/login"
-              className="font-medium text-indigo-600 hover:text-indigo-500"
-            >
-              Already have an account? Sign in
-            </Link>
+            <div>
+              <Button
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-200"
+                disabled={loading}
+              >
+                {loading ? 'Signing up...' : 'Sign up'}
+              </Button>
+            </div>
+
+            <div className="text-center">
+              <Link
+                to="/login"
+                className="font-medium text-indigo-600 hover:text-indigo-500 transition duration-200"
+              >
+                Already have an account? Sign in
+              </Link>
+            </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
