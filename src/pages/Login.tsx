@@ -37,7 +37,7 @@ const Login: React.FC = () => {
       {/* Left side - Prescription Maker Content */}
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-600 to-indigo-800 items-center justify-center p-12">
         <div className="text-white text-center">
-          <img src="/rx.png" alt="Rx Symbol" className="w-24 h-24 mx-auto mb-6 opacity-90" />
+          <img src="/Dlogo.png" alt="Rx Symbol" className="w-auto h-24 mx-auto mb-6 opacity-90" />
           <h1 className="text-5xl font-bold mb-4">Prescription Maker</h1>
           <p className="text-xl mb-8 leading-relaxed">
             Streamline your medical practice with our intuitive prescription management system.
@@ -64,7 +64,7 @@ const Login: React.FC = () => {
       <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <Card className="max-w-md w-full space-y-8 shadow-2xl">
           <div>
-            <img src="/logo.png" alt="Logo" className="w-16 h-16 mx-auto mb-4" />
+            {/* <img src="/Dlogo.png" alt="Logo" className="w-auto h-auto mx-auto mb-4" /> */}
             <h2 className="text-center text-3xl font-extrabold text-gray-900">
               Sign in to your account
             </h2>
