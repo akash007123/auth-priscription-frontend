@@ -16,6 +16,7 @@ interface User {
   registrationNo?: string;
   address?: string;
   mobile?: string;
+  specialty?: string;
 }
 
 interface AuthContextType {
