@@ -6,6 +6,8 @@ import PrescriptionsPage from './pages/PrescriptionsPage';
 import ProfilePage from './pages/ProfilePage';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import AdminDashboard from './pages/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -16,6 +18,8 @@ export default function App() {
     <Routes>
       <Route path="/login" element={user ? <Navigate to={user.role === 'Admin' ? '/admin' : '/'} /> : <Login />} />
       <Route path="/signup" element={user ? <Navigate to={user.role === 'Admin' ? '/admin' : '/'} /> : <Signup />} />
+      <Route path="/forgot-password" element={user ? <Navigate to={user.role === 'Admin' ? '/admin' : '/'} /> : <ForgotPassword />} />
+      <Route path="/reset-password/:token" element={user ? <Navigate to={user.role === 'Admin' ? '/admin' : '/'} /> : <ResetPassword />} />
       <Route
         path="/admin"
         element={
