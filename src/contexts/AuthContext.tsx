@@ -23,6 +23,7 @@ interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
   signup: (formData: FormData) => Promise<void>;
+  updateProfile: (formData: FormData) => Promise<void>;
   logout: () => void;
   loading: boolean;
 }
@@ -85,6 +86,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setUser(userData);
   };
 
+  const updateProfile = async (formData: FormData) => {
+    const response = await axios.put('/api/auth/profile', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    const { user: userData } = response.data;
+    setUser(userData);
+  };
+
   const logout = () => {
     localStorage.removeItem('token');
     delete axios.defaults.headers.common['Authorization'];
@@ -92,7 +101,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, signup, updateProfile, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
