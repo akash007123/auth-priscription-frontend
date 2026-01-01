@@ -93,7 +93,7 @@ const Signup: React.FC = () => {
             <div className="mb-8 transform hover:scale-105 transition-transform duration-300">
               <div className="absolute inset-0 bg-white rounded-full blur-md opacity-30"></div>
               <img 
-                src="/Dlogo.png" 
+                src="/Plogo.png" 
                 alt="Prescription Maker Logo" 
                 className="relative w-auto h-28 mx-auto drop-shadow-2xl"
               />

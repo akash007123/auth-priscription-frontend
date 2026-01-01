@@ -67,7 +67,7 @@ export default function Header() {
             {/* Company Logo */}
             <div className="items-center space-x-3">
               <img
-                src='/Dlogo.png'
+                src='/Plogo.png'
                 alt="Sosapient Logo"
                 className="w-32 h-auto object-contain"
               />

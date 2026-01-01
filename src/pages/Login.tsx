@@ -51,7 +51,7 @@ const Login: React.FC = () => {
               <div className="relative inline-block">
                 <div className="absolute inset-0 bg-white rounded-full blur-md opacity-30"></div>
                 <img 
-                  src="/Dlogo.png" 
+                  src="/Plogo.png" 
                   alt="Prescription Maker Logo" 
                   className="relative w-auto h-28 mx-auto drop-shadow-2xl"
                 />
@@ -134,7 +134,7 @@ const Login: React.FC = () => {
               {/* Mobile logo */}
               <div className="lg:hidden mb-8 text-center">
                 <img 
-                  src="/Dlogo.png" 
+                  src="/Plogo.png" 
                   alt="Logo" 
                   className="w-auto h-16 mx-auto mb-4"
                 />
