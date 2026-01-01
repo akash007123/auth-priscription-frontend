@@ -26,7 +26,13 @@ import {
   TrendingUp,
   XCircle,
   AlertCircle,
-  ChevronRight
+  ChevronRight,
+  Lock,
+  MapPin,
+  Building,
+  Award,
+  FileText as FileIcon,
+  Stethoscope
 } from 'lucide-react';
 
 interface User {
@@ -39,6 +45,7 @@ interface User {
   clinicHospitalName: string;
   qualification: string;
   registrationNo: string;
+  specialty?: string;
   profilePic: string | null;
   logoPic: string | null;
   status: 'Active' | 'Inactive';
@@ -65,7 +72,13 @@ const AdminDashboard: React.FC = () => {
     email: '',
     mobile: '',
     role: 'Doctor' as 'Admin' | 'Doctor',
-    status: 'Active' as 'Active' | 'Inactive'
+    status: 'Active' as 'Active' | 'Inactive',
+    password: '',
+    address: '',
+    clinicHospitalName: '',
+    qualification: '',
+    registrationNo: '',
+    specialty: ''
   });
 
   // Pagination state
@@ -143,12 +156,18 @@ const AdminDashboard: React.FC = () => {
 
   const handleEdit = (user: User) => {
     setEditUser(user);
-    setEditForm({ 
-      name: user.name, 
-      email: user.email, 
-      mobile: user.mobile, 
-      role: user.role, 
-      status: user.status 
+    setEditForm({
+      name: user.name,
+      email: user.email,
+      mobile: user.mobile,
+      role: user.role,
+      status: user.status,
+      password: '',
+      address: user.address,
+      clinicHospitalName: user.clinicHospitalName,
+      qualification: user.qualification,
+      registrationNo: user.registrationNo,
+      specialty: user.specialty || ''
     });
     setIsEditModalOpen(true);
   };
@@ -473,7 +492,7 @@ const AdminDashboard: React.FC = () => {
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Email Address
@@ -489,7 +508,7 @@ const AdminDashboard: React.FC = () => {
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Mobile Number
@@ -505,7 +524,23 @@ const AdminDashboard: React.FC = () => {
                   />
                 </div>
               </div>
-              
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Password <span className="text-gray-500 text-xs">(leave empty to keep current)</span>
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="password"
+                    value={editForm.password}
+                    onChange={(e) => setEditForm({ ...editForm, password: e.target.value })}
+                    className="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter new password"
+                  />
+                </div>
+              </div>
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -520,7 +555,7 @@ const AdminDashboard: React.FC = () => {
                     <option value="Admin">Administrator</option>
                   </select>
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Status
@@ -535,6 +570,92 @@ const AdminDashboard: React.FC = () => {
                   </select>
                 </div>
               </div>
+
+              {editForm.role === 'Doctor' && (
+                <>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Address
+                    </label>
+                    <div className="relative">
+                      <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <input
+                        type="text"
+                        value={editForm.address}
+                        onChange={(e) => setEditForm({ ...editForm, address: e.target.value })}
+                        className="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Enter address"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Clinic/Hospital Name
+                    </label>
+                    <div className="relative">
+                      <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <input
+                        type="text"
+                        value={editForm.clinicHospitalName}
+                        onChange={(e) => setEditForm({ ...editForm, clinicHospitalName: e.target.value })}
+                        className="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Enter clinic/hospital name"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Qualification
+                      </label>
+                      <div className="relative">
+                        <Award className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                          type="text"
+                          value={editForm.qualification}
+                          onChange={(e) => setEditForm({ ...editForm, qualification: e.target.value })}
+                          className="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          placeholder="Enter qualification"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Registration No
+                      </label>
+                      <div className="relative">
+                        <FileIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                          type="text"
+                          value={editForm.registrationNo}
+                          onChange={(e) => setEditForm({ ...editForm, registrationNo: e.target.value })}
+                          className="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          placeholder="Enter registration number"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Specialty
+                    </label>
+                    <div className="relative">
+                      <Stethoscope className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <input
+                        type="text"
+                        value={editForm.specialty}
+                        onChange={(e) => setEditForm({ ...editForm, specialty: e.target.value })}
+                        className="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Enter specialty"
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
               
               <div className="pt-4 flex justify-end space-x-3">
                 <button
