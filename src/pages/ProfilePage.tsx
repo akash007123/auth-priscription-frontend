@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Header from '../components/Header';
 import Button from '../components/Button';
-import { CameraIcon, PencilIcon, UserIcon } from '@heroicons/react/24/outline';
+import { CameraIcon, PencilIcon, UserIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
 
 interface FormData {
   name: string;
@@ -17,6 +18,7 @@ interface FormData {
 
 export default function ProfilePage() {
   const { user, updateProfile } = useAuth();
+  const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<FormData>({
@@ -62,7 +64,7 @@ export default function ProfilePage() {
       
       // Add all form fields
       Object.entries(formData).forEach(([key, value]) => {
-        if (value !== undefined && value !== '') {
+        if (value !== undefined) {
           formDataToSend.append(key, value);
         }
       });
@@ -115,6 +117,14 @@ export default function ProfilePage() {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
+              <Button
+                variant="primary"
+                onClick={() => navigate('/')}
+                className="flex items-center space-x-2"
+              >
+                <ArrowLeftIcon className="w-4 h-4" />
+                <span>Back to Home</span>
+              </Button>
               <div className="relative">
                 <img
                   src={user.profilePic || '/default-avatar.png'}

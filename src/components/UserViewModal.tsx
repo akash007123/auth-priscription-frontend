@@ -13,6 +13,7 @@ import {
   PhotoIcon,
   XMarkIcon
 } from '@heroicons/react/24/outline';
+import { Stethoscope } from 'lucide-react';
 
 interface User {
   id: string;
@@ -24,6 +25,7 @@ interface User {
   registrationNo: string;
   address: string;
   qualification: string;
+  specialty: string;
   profilePic: string | null;
   logoPic: string | null;
   status: 'Active' | 'Inactive';
@@ -58,6 +60,7 @@ const UserViewModal: React.FC<UserViewModalProps> = ({ open, onClose, user }) =>
     { label: 'Mobile Number', value: user.mobile, icon: PhoneIcon, color: 'text-gray-700' },
     { label: 'Clinic/Hospital', value: user.clinicHospitalName, icon: BuildingOfficeIcon, color: 'text-gray-700' },
     { label: 'Qualification', value: user.qualification, icon: AcademicCapIcon, color: 'text-gray-700' },
+    ...(user.role === 'Doctor' ? [{ label: 'Specialty', value: user.specialty, icon: Stethoscope, color: 'text-gray-700' }] : []),
     { label: 'Registration No.', value: user.registrationNo, icon: DocumentTextIcon, color: 'text-gray-700' },
     { label: 'Address', value: user.address, icon: MapPinIcon, color: 'text-gray-700', spanFull: true },
   ];
@@ -146,6 +149,13 @@ const UserViewModal: React.FC<UserViewModalProps> = ({ open, onClose, user }) =>
                   <p className="text-sm font-medium text-gray-500">Member Since</p>
                   <p className="text-sm text-gray-900 mt-1">
                     {new Date(user.createdAt).toLocaleDateString()}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-sm font-medium text-gray-500">Specialty</p>
+                  <p className="text-sm text-gray-900 mt-1">
+                    {user.specialty || 'Not specified'}
                   </p>
                 </div>
               </div>

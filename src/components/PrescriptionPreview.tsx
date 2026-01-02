@@ -60,7 +60,7 @@ const PrescriptionPreview = forwardRef<
                 {user?.name || "Dr Shashank Bhargava"}
               </p>
 
-              <p className="text-xs text-gray-700">{user?.qualification || "MBBS, MD, FAHRS"}</p>
+              <p className="text-xs text-gray-700">{user?.qualification || "MBBS, MD, FAHRS"} - {user?.specialty}</p>
 
               <p className="text-xs text-gray-600 mt-1 max-w-xl">
                 {user?.address || "MPEB Office, Opposite Gate No. 4, Maksi Road, Freeganj, Ujjain"}
