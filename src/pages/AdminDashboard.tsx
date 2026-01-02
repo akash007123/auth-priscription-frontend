@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
@@ -54,6 +55,7 @@ interface User {
 }
 
 const AdminDashboard: React.FC = () => {
+  const navigate = useNavigate();
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -152,6 +154,10 @@ const AdminDashboard: React.FC = () => {
   const handleView = (user: User) => {
     setViewUser(user);
     setIsViewModalOpen(true);
+  };
+
+  const handleViewProfile = (user: User) => {
+    navigate(`/admin/doctor/${user.id}`);
   };
 
   const handleEdit = (user: User) => {
@@ -433,6 +439,7 @@ const AdminDashboard: React.FC = () => {
                   onEdit={handleEdit}
                   onDelete={handleDelete}
                   onStatusChange={handleStatusChange}
+                  onViewProfile={handleViewProfile}
                   formatDate={formatDate}
                   currentPage={currentPage}
                   totalPages={totalPages}

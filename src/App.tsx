@@ -9,10 +9,16 @@ import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import AdminDashboard from './pages/AdminDashboard';
+import DoctorProfilePage from './pages/DoctorProfilePage';
 import ProtectedRoute from './components/ProtectedRoute';
+import Loading from './components/Loading';
 
 export default function App() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <Routes>
@@ -25,6 +31,14 @@ export default function App() {
         element={
           <ProtectedRoute requiredRole="Admin">
             <AdminDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/doctor/:id"
+        element={
+          <ProtectedRoute requiredRole="Admin">
+            <DoctorProfilePage />
           </ProtectedRoute>
         }
       />

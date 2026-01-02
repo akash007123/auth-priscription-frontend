@@ -12,6 +12,7 @@ import {
   Shield,
   Calendar,
   Briefcase,
+  FileText,
 } from 'lucide-react';
 
 interface User {
@@ -44,6 +45,7 @@ interface UserManagementSectionProps {
   onEdit: (user: User) => void;
   onDelete: (user: User) => void;
   onStatusChange: (userId: string, status: 'Active' | 'Inactive') => void;
+  onViewProfile?: (user: User) => void;
   formatDate: (dateString: string) => string;
   currentPage: number;
   totalPages: number;
@@ -64,6 +66,7 @@ const UserManagementSection: React.FC<UserManagementSectionProps> = ({
   onEdit,
   onDelete,
   onStatusChange,
+  onViewProfile,
   formatDate,
   currentPage,
   totalPages,
@@ -226,6 +229,15 @@ const UserManagementSection: React.FC<UserManagementSectionProps> = ({
                       >
                         <Edit2 className="w-4 h-4" />
                       </button>
+                      {user.role === 'Doctor' && onViewProfile && (
+                        <button
+                          onClick={() => onViewProfile(user)}
+                          className="p-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                          title="View Doctor Profile & Prescriptions"
+                        >
+                          <FileText className="w-4 h-4" />
+                        </button>
+                      )}
                       <button
                         onClick={() => onStatusChange(user.id, user.status)}
                         className={`p-2 rounded-lg transition-colors ${
